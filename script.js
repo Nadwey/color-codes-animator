@@ -1,41 +1,112 @@
-/**
- * Returns array with specified element repeated `size` times.
- *
- * @param {number} size How many times repeat.
- * @param {any} element Element to repeat.
- * @returns {Array<any>}
- */
-function repeatElement(size, element) {
-    return Array.apply(null, Array(size)).map(function () {
-        return element;
-    });
+const animations = [
+    {
+        name: "Left to Right",
+        id: "lefttoright",
+        arguments: [
+            {
+                name: "Base style",
+                type: "string",
+                id: "basestyle",
+            },
+            {
+                name: "Animation style",
+                type: "string",
+                id: "animationstyle",
+            },
+        ],
+        func: leftToRight,
+    },
+    {
+        name: "RainbowHue",
+        id: "rainbowhue",
+        arguments: [
+            {
+                name: "Rainbow steps",
+                type: "number",
+                id: "rainbowSteps",
+            },
+            {
+                name: "Hue change",
+                type: "number",
+                id: "hueChange",
+            },
+            {
+                name: "Additional styles",
+                type: "string",
+                id: "additionalStyles"
+            }
+        ],
+        func: rainbowHue,
+    },
+];
+
+function displayAnimations() {
+    const selectElement = document.getElementById("animation-type");
+
+    for (const animation of animations) {
+        let option = document.createElement("option");
+        option.value = animation.id;
+        option.innerText = animation.name;
+
+        selectElement.appendChild(option);
+    }
 }
 
-function appendFixes(str) {
-    const baseColor = document.getElementById("input-base").value;
-    const prefix = document.getElementById("prefix-input").value;
-    const suffix = document.getElementById("suffix-input").value;
+function updateAnimationPanel() {
+    const selectedAnimationType = document.getElementById("animation-type").value;
+    const animationPanel = document.getElementById("animation-panel");
+    const animation = animations.find(e => e.id === selectedAnimationType);
 
-    return prefix + baseColor + str + suffix;
+
+    animationPanel.innerHTML = "";
+
+    for (const argument of animation.arguments) {
+        switch (argument.type) {
+            case "string": {
+                let input = document.createElement("input");
+                input.type = "text";
+                input.id = argument.id;
+
+                animationPanel.appendChild(divWithLabelAndElement(argument.name, input));
+                break;
+            }
+            case "number": {
+                let input = document.createElement("input");
+                input.type = "number";
+                input.id = argument.id;
+
+                animationPanel.appendChild(divWithLabelAndElement(argument.name, input));
+                break;
+            }
+        }
+    }
 }
 
 function animateText() {
-    const inputStr = document.getElementById("input-text").value;
-    const inputAnimation = document.getElementById("input-animation").value;
-    const baseColor = document.getElementById("input-base").value;
+    const animationType = document.getElementById("animation-type").value;
+    const animation = animations.find(e => e.id === animationType);
 
-    let steps = [];
+    let parsedArguments = {};
 
-    // beginning 8 times of original text
-    steps.push(...repeatElement(8, appendFixes(inputStr)));
-
-    // insert animation at every position
-    for (let i = 0; i < inputStr.length; i++) {
-        steps.push(appendFixes(`${inputStr.slice(0, i)}${inputAnimation}${inputStr[i]}&r${baseColor}${inputStr.slice(i + 1)}`));
+    for (const argument of animation.arguments) {
+        switch (argument.type) {
+            case "string": {
+                parsedArguments[argument.id] = document.getElementById(argument.id).value;
+                break;
+            }
+            case "number": {
+                parsedArguments[argument.id] = parseFloat(document.getElementById(argument.id).value);
+                break;
+            }
+        }
     }
 
-    // end 8 times of original text
-    steps.push(...repeatElement(8, appendFixes(inputStr)));
+    const inputStr = document.getElementById("input-text").value;
 
-    document.getElementById("output-text").value = steps.join("\n");
+    console.log(parsedArguments);
+
+    document.getElementById("output-text").value = animation.func(inputStr, parsedArguments);
 }
+
+window.onload = displayAnimations();
+document.getElementById("animation-type").onchange = updateAnimationPanel;

@@ -1,0 +1,5 @@
+#animation-panel {
+    border: solid 1px black;
+    padding: 5px;
+    display: inline-block;
+}

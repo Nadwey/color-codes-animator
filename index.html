@@ -3,21 +3,30 @@
     <head>
         <meta charset="UTF-8" />
         <title>Color codes animator</title>
+        <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-        <input id="input-text" type="text" placeholder="Text to animate" /><br />
-        <input id="input-base" type="text" placeholder="Base color" /><br />
-        <input id="input-animation" type="text" placeholder="Animation text" /><br />
+        <input id="input-text" type="text" placeholder="Text to animate" />
+        <br />
+        Animation type: <select id="animation-type">
+            
+        </select><br />
+        <div id="animation-panel">
+
+        </div>
         <br />
         Prefix & Suffix (can be used if you for example want to surround text in quotes):<br />
         <input id="prefix-input" type="text" placeholder="Prefix" />
-        <input id="suffix-input" type="text" placeholder="Suffix" />
+        <input id="suffix-input" type="text" placeholder="Suffix" /><br />
 
         <br /><br /><br /><br />
 
         <button onclick="animateText();">Animate!</button><br />
         <textarea readonly id="output-text"></textarea>
 
+        <script src="./utils.js"></script>
+        <script src="./lefttoright.js"></script>
+        <script src="./rainbowhue.js"></script>
         <script src="./script.js"></script>
     </body>
 </html>
