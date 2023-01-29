@@ -13,6 +13,12 @@ const animations = [
                 type: "string",
                 id: "animationstyle",
             },
+            {
+                name: "Animation padding (frames without animation)",
+                type: "number",
+                id: "animationPadding",
+                default: 8,
+            },
         ],
         func: leftToRight,
     },
@@ -66,6 +72,7 @@ function updateAnimationPanel() {
                 let input = document.createElement("input");
                 input.type = "text";
                 input.id = argument.id;
+                if (typeof argument.default !== "undefined") input.value = argument.default;
 
                 animationPanel.appendChild(divWithLabelAndElement(argument.name, input));
                 break;
@@ -74,6 +81,7 @@ function updateAnimationPanel() {
                 let input = document.createElement("input");
                 input.type = "number";
                 input.id = argument.id;
+                if (typeof argument.default !== "undefined") input.value = argument.default;
 
                 animationPanel.appendChild(divWithLabelAndElement(argument.name, input));
                 break;
@@ -110,3 +118,4 @@ function animateText() {
 
 window.onload = displayAnimations();
 document.getElementById("animation-type").onchange = updateAnimationPanel;
+updateAnimationPanel();
