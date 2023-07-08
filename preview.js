@@ -6,13 +6,16 @@ function preview() {
     const steps = animation.split("\n");
     currentStep = 0;
 
-    clearInterval(interval);
-    interval = setInterval(() => {
+    function updateAnimation() {
         document.getElementById("preview").innerHTML = parseMinecraftString(steps[currentStep]);
         currentStep++;
 
         if (currentStep >= steps.length) {
             currentStep = 0;
         }
-    }, document.getElementById("animation-delay").value);
+    }
+
+    clearInterval(interval);
+    interval = setInterval(updateAnimation, document.getElementById("animation-delay").value);
+    updateAnimation();
 }
