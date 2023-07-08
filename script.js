@@ -1,17 +1,19 @@
 const animations = [
     {
-        name: "Left to Right",
+        name: "Left to right",
         id: "lefttoright",
         arguments: [
             {
                 name: "Base style",
                 type: "string",
                 id: "basestyle",
+                default: "&6"
             },
             {
                 name: "Animation style",
                 type: "string",
                 id: "animationstyle",
+                default: "&e"
             },
             {
                 name: "Animation padding (frames without animation)",
@@ -30,11 +32,13 @@ const animations = [
                 name: "Rainbow steps",
                 type: "number",
                 id: "rainbowSteps",
+                default: "50"
             },
             {
                 name: "Hue change",
                 type: "number",
                 id: "hueChange",
+                default: "5"
             },
             {
                 name: "Additional styles",
@@ -88,6 +92,9 @@ function updateAnimationPanel() {
             }
         }
     }
+
+    animateText();
+    preview();
 }
 
 function animateText() {
@@ -109,7 +116,7 @@ function animateText() {
         }
     }
 
-    const inputStr = document.getElementById("input-text").value;
+    const inputStr = document.getElementById("input-text").value || "Text to animate";
 
     console.log(parsedArguments);
 
