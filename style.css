@@ -1,11 +1,11 @@
 @font-face {
     font-family: Quicksand;
-    src: url(./Quicksand.ttf);
+    src: url(./fonts/Quicksand/Quicksand.ttf);
 }
 
 @font-face {
-    font-family: Minecraft;
-    src: url(./Minecraft.otf);
+    font-family: Monocraft;
+    src: url(./fonts/Monocraft/Monocraft.ttf);
 }
 
 body {
@@ -43,6 +43,7 @@ textarea {
     border-radius: 3px;
     padding: 7px;
     font-size: 0.85rem;
+    font-family: monospace;
 }
 
 input[type="range"] {
@@ -79,6 +80,6 @@ button {
 }
 
 #preview {
-    font-family: Minecraft;
+    font-family: Monocraft;
     font-size: 16px;
 }
