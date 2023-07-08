@@ -121,6 +121,7 @@ function animateText() {
     console.log(parsedArguments);
 
     document.getElementById("output-text").value = animation.func(inputStr, parsedArguments);
+    preview();
 }
 
 window.onload = displayAnimations();

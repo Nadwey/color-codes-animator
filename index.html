@@ -21,11 +21,11 @@
 
             <br /><br />
 
-            <button onclick="animateText();">Animate!</button><button onclick="preview();">Preview</button><br />
+            <button onclick="animateText();">Animate!</button><br />
             <textarea readonly id="output-text"></textarea>
             <br /><br />
             Animation delay: <span id="animation-delay-value">200</span>ms
-            <input value="200" min="1" max="1000" id="animation-delay" type="range" />
+            <input onchange="preview();" value="200" min="1" max="1000" id="animation-delay" type="range" />
             <p id="preview"></p>
         </div>
 
