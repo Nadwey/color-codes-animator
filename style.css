@@ -1,5 +1,84 @@
+@font-face {
+    font-family: Quicksand;
+    src: url(./Quicksand.ttf);
+}
+
+@font-face {
+    font-family: Minecraft;
+    src: url(./Minecraft.otf);
+}
+
+body {
+    background-color: #070707;
+    font-family: monospace;
+    color: #bbbbbb;
+}
+
+#container {
+    margin: auto;
+    width: 50%;
+}
+
 #animation-panel {
-    border: solid 1px black;
-    padding: 5px;
+    background-color: #222222;
+    border: solid 1px #444444;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 5px;
     display: inline-block;
+}
+
+#animation-panel input {
+    margin-bottom: 15px;
+}
+
+input,
+select,
+textarea {
+    background-color: #26272a;
+    outline: none;
+    border: solid 1px #444444;
+    margin: 2px;
+    color: white;
+    border-radius: 3px;
+    padding: 7px;
+    font-size: 0.85rem;
+}
+
+input[type="range"] {
+    appearance: none;
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+    border: none;
+    background-color: #333333;
+    padding: 3px;
+    height: 8px;
+    border-radius: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #2080ff;
+    cursor: pointer;
+}
+
+button {
+    background-color: #2080ff;
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 10px 18px;
+    font-size: 1rem;
+}
+
+#preview {
+    font-family: Minecraft;
+    font-size: 16px;
 }

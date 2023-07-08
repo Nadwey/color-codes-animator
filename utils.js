@@ -27,7 +27,8 @@ function divWithLabelAndElement(label, element) {
     let div = document.createElement("div");
 
     let span = document.createElement("span");
-    span.innerText = label + " ";
+    span.innerText = label;
+    span.style.display = "block";
 
     div.appendChild(span);
     div.appendChild(element);

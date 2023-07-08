@@ -119,3 +119,9 @@ function animateText() {
 window.onload = displayAnimations();
 document.getElementById("animation-type").onchange = updateAnimationPanel;
 updateAnimationPanel();
+
+document.getElementById("animation-delay").oninput = () => {
+    const delay = document.getElementById("animation-delay").value;
+    document.getElementById("animation-delay-value").innerText = delay;
+
+}

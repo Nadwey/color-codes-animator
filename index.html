@@ -2,31 +2,38 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Color codes animator</title>
+        <title>Minecraft color codes animator</title>
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-        <input id="input-text" type="text" placeholder="Text to animate" />
-        <br />
-        Animation type: <select id="animation-type">
-            
-        </select><br />
-        <div id="animation-panel">
+        <div id="container">
+            <h1>Minecraft color codes animator</h1>
+            <input id="input-text" type="text" placeholder="Text to animate" />
+            <br /><br />
+            Animation type:
+            <select id="animation-type"></select
+            ><br />
+            <div id="animation-panel"></div>
+            <br /><br />
+            Prefix & Suffix (can be used if you for example want to surround text in quotes):<br />
+            <input id="prefix-input" type="text" placeholder="Prefix" />
+            <input id="suffix-input" type="text" placeholder="Suffix" /><br />
 
+            <br /><br />
+
+            <button onclick="animateText();">Animate!</button><button onclick="preview();">Preview</button><br />
+            <textarea readonly id="output-text"></textarea>
+            <br /><br />
+            Animation delay: <span id="animation-delay-value">200</span>ms
+            <input value="200" min="1" max="1000" id="animation-delay" type="range" />
+            <p id="preview"></p>
         </div>
-        <br />
-        Prefix & Suffix (can be used if you for example want to surround text in quotes):<br />
-        <input id="prefix-input" type="text" placeholder="Prefix" />
-        <input id="suffix-input" type="text" placeholder="Suffix" /><br />
-
-        <br /><br /><br /><br />
-
-        <button onclick="animateText();">Animate!</button><br />
-        <textarea readonly id="output-text"></textarea>
 
         <script src="./utils.js"></script>
+        <script src="./parseMinecraftString.js"></script>
         <script src="./lefttoright.js"></script>
         <script src="./rainbowhue.js"></script>
+        <script src="./preview.js"></script>
         <script src="./script.js"></script>
     </body>
 </html>
