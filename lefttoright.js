@@ -2,6 +2,7 @@ function leftToRight(inputStr, arguments) {
     const baseColor = arguments.basestyle;
     const inputAnimation = arguments.animationstyle;
     const animationPadding = arguments.animationPadding;
+    const reverse = arguments.reverse;
 
     let steps = [];
 
@@ -15,6 +16,10 @@ function leftToRight(inputStr, arguments) {
 
     // add animation padding to the end
     steps.push(...repeatElement(animationPadding, appendFixes(baseColor + inputStr)));
+
+    if (reverse) {
+        steps = steps.reverse();
+    }
 
     return steps.join("\n");
 }

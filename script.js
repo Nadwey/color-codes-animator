@@ -7,19 +7,25 @@ const animations = [
                 name: "Base style",
                 type: "string",
                 id: "basestyle",
-                default: "&6"
+                default: "&6",
             },
             {
                 name: "Animation style",
                 type: "string",
                 id: "animationstyle",
-                default: "&e"
+                default: "&e",
             },
             {
                 name: "Animation padding (frames without animation)",
                 type: "number",
                 id: "animationPadding",
                 default: 8,
+            },
+            {
+                name: "Right to left",
+                type: "boolean",
+                id: "reverse",
+                default: false,
             },
         ],
         func: leftToRight,
@@ -32,19 +38,19 @@ const animations = [
                 name: "Rainbow steps",
                 type: "number",
                 id: "rainbowSteps",
-                default: "50"
+                default: "50",
             },
             {
                 name: "Hue change",
                 type: "number",
                 id: "hueChange",
-                default: "5"
+                default: "5",
             },
             {
                 name: "Additional styles",
                 type: "string",
-                id: "additionalStyles"
-            }
+                id: "additionalStyles",
+            },
         ],
         func: rainbowHue,
     },
@@ -65,8 +71,7 @@ function displayAnimations() {
 function updateAnimationPanel() {
     const selectedAnimationType = document.getElementById("animation-type").value;
     const animationPanel = document.getElementById("animation-panel");
-    const animation = animations.find(e => e.id === selectedAnimationType);
-
+    const animation = animations.find((e) => e.id === selectedAnimationType);
 
     animationPanel.innerHTML = "";
 
@@ -90,6 +95,15 @@ function updateAnimationPanel() {
                 animationPanel.appendChild(divWithLabelAndElement(argument.name, input));
                 break;
             }
+            case "boolean": {
+                let input = document.createElement("input");
+                input.type = "checkbox";
+                input.id = argument.id;
+                if (typeof argument.default !== "undefined") input.checked = argument.default;
+
+                animationPanel.appendChild(divWithLabelAndElement(argument.name, input));
+                break;
+            }
         }
     }
 
@@ -99,7 +113,7 @@ function updateAnimationPanel() {
 
 function animateText() {
     const animationType = document.getElementById("animation-type").value;
-    const animation = animations.find(e => e.id === animationType);
+    const animation = animations.find((e) => e.id === animationType);
 
     let parsedArguments = {};
 
@@ -111,6 +125,10 @@ function animateText() {
             }
             case "number": {
                 parsedArguments[argument.id] = parseFloat(document.getElementById(argument.id).value);
+                break;
+            }
+            case "boolean": {
+                parsedArguments[argument.id] = document.getElementById(argument.id).checked;
                 break;
             }
         }
@@ -131,5 +149,4 @@ updateAnimationPanel();
 document.getElementById("animation-delay").oninput = () => {
     const delay = document.getElementById("animation-delay").value;
     document.getElementById("animation-delay-value").innerText = delay;
-
-}
+};
